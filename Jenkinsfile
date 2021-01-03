@@ -3,7 +3,9 @@ pipeline {
    tools {
      maven 'maven'
    }
-
+   environment {
+      def mvnHome =  tool name: 'maven', type: 'maven'
+   }
    stages{
 
       stage("Checkout"){
@@ -35,7 +37,7 @@ pipeline {
 }
   stage('SonarQube Analysis') {
      steps {
-        def mvnHome =  tool name: 'maven', type: 'maven'
+        
         withSonarQubeEnv('sonarqube') { 
           sh "${mvnHome}/bin/mvn sonar:sonar"
         }
