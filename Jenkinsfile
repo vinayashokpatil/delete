@@ -22,15 +22,23 @@ pipeline {
       }
       
       
-    stage('SonarQube Analysis') {
+    //stage('SonarQube Analysis') {
+     //steps {
+        //echo "maven home is ${mvnHome}"
+       // withSonarQubeEnv('sonarqube') { 
+          //sh "${mvnHome}/bin/mvn sonar:sonar"
+       // }
+       // }
+   // }    
+      
+      stage('SonarQube Analysis') {
      steps {
         echo "maven home is ${mvnHome}"
         withSonarQubeEnv('sonarqube') { 
-          sh "${mvnHome}/bin/mvn sonar:sonar"
+          sh "sonar:sonar"
         }
         }
     }    
-      
       
    }
 }
