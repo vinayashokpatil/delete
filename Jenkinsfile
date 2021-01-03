@@ -24,7 +24,7 @@ pipeline {
       
     stage('SonarQube Analysis') {
      steps {
-        
+        echo "maven home is ${mvnHome}"
         withSonarQubeEnv('sonarqube') { 
           sh "${mvnHome}/bin/mvn sonar:sonar"
         }
