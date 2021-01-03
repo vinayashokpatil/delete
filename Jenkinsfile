@@ -18,6 +18,8 @@ pipeline {
          sh 'mvn clean install package'
          }
       }
+      
+      
       stage('Sonarqube') {
          environment {
                scannerHome = tool 'sonarqube'
@@ -29,9 +31,14 @@ pipeline {
             timeout(time: 10, unit: 'MINUTES') {
             waitForQualityGate abortPipeline: true
         }
-    }
+      }        
 }
-      
+  stage('SonarQube Analysis') {
+        def mvnHome =  tool name: 'maven', type: 'maven'
+        withSonarQubeEnv('sonarqube') { 
+          sh "${mvnHome}/bin/mvn sonar:sonar"
+        }
+    }    
       
       
    }
