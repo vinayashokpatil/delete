@@ -10,6 +10,7 @@ pipeline {
        steps{
          echo "this is taken care using pipelinescript from SCM in Jenkins"
          echo "so no need to add any steps here in Jenkinsfile"
+         git 'https://github.com/vinayashokpatil/delete.git'
          }
       }
       stage("build using Maven"){
@@ -19,7 +20,7 @@ pipeline {
       }
       stage('Sonarqube') {
          environment {
-               scannerHome = tool 'SonarQubeScanner'
+               scannerHome = tool 'sonarqube'
          }
       steps {
                withSonarQubeEnv('sonarqube') {
