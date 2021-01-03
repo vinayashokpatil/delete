@@ -31,11 +31,20 @@ pipeline {
        // }
    // }    
       
+      //stage('SonarQube Analysis') {
+    // steps {
+        //echo "maven home is ${mvnHome}"
+        //withSonarQubeEnv('sonarqube') { 
+         // sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+       // }
+       // }
+   // }    
+      
       stage('SonarQube Analysis') {
      steps {
         echo "maven home is ${mvnHome}"
         withSonarQubeEnv('sonarqube') { 
-          sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+          sh 'mvn sonar:sonar'
         }
         }
     }    
